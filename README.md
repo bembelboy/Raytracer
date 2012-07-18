@@ -7,4 +7,4 @@ Luigi:
 
 Bagrat:
 
-Wichtig: test
+Wichtig:
