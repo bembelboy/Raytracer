@@ -1,2 +1,9 @@
 Raytracer
 =========
+
+Aufgabenauteilung:
+
+Luigi:
+
+Bagrat:
+
