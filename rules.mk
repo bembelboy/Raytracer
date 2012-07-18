@@ -31,14 +31,14 @@ clean::
 	fi
 
 # default real cleanup target
-realclean::	clean
-	@echo "making realclean in $(PWD)..."
-	@if [ ! -z "$(OBJECTS:.o=.d)" ] ; then \
-	  $(RM) $(OBJECTS:.o=.d) ; \
-	fi
-	-$(RM) core core.[0-9]* trace.log par.log log so_locations .depend
-	-$(RM) -r ii_files rii_files ti_files *.rpo
-	-$(RM) *~ *.pix* *.Counts *.i *.ii *.s
+#    realclean::	clean
+#	    @echo "making realclean in $(PWD)..."
+#	    @if [ ! -z "$(OBJECTS:.o=.d)" ] ; then \
+#	      $(RM) $(OBJECTS:.o=.d) ; \
+#	    fi
+#	    -$(RM) core core.[0-9]* trace.log par.log log so_locations .depend
+#	    -$(RM) -r ii_files rii_files ti_files *.rpo
+#	    -$(RM) *~ *.pix* *.Counts *.i *.ii *.s
 
 test::		$(PROGRAMS)
 	@if [ ! -z "$(PROGRAMS)" ] ; then \

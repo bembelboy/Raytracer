@@ -45,7 +45,6 @@ SOURCE =\
 	src/point.cpp \
 	src/vector.cpp \
 	src/matrix.cpp \
-	src/main.cpp \
 	src/sdf_loader.cpp \
 	src/shape.cpp \
 	src/sphere.cpp \
@@ -66,15 +65,15 @@ PROGRAMS = 	$(PROGRAMOBJECT:.o=)
 
 targets:	$(PROGRAMS)
 
-$(PROGRAMS):	$(OBJECTS)
+$(PROGRAMS):	$(OBJECTS) $(PROGRAMOBJECT)
 	-$(RM) $@
-	$(CXX) -o $(prefix)/$@ $(EXTRA_LIBS) $(LDXXFLAGS) $(OBJECTS) $(LIBS) 
+	$(CXX) -o $(prefix)/$@ $(EXTRA_LIBS) $(LDXXFLAGS) $(OBJECTS) $(LIBS) $(PROGRAMOBJECT) 
 	$(MOVE) $(prefix)/$@ .
 
 realclean:: clean
 	-$(RM) $(prefix)/$(OBJECTS)
-	-$(RM) $(prefix)/$(PROGRAMOBJECTS)
-	-$(RM) $(prefix)/$(PROGRAMS)
+	-$(RM) $(prefix)/$(PROGRAMOBJECT)
+	-$(RM) ./main
 
 include $(prefix)/rules.mk
 
