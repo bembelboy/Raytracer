@@ -3,7 +3,7 @@ Raytracer
 
 Aufgabenauteilung:
 
-Luigi:
+Luigi: machen machen
 
 Bagrat:
 
