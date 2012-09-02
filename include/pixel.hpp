@@ -5,7 +5,7 @@
 #include <iosfwd>
 
 // header, project
-#include <color.hpp>
+#include "color.hpp"
 
 
 class pixel {
@@ -22,7 +22,7 @@ public : // member
 
   std::size_t x;
   std::size_t y;
-  color       rgb;
+  color rgb;
 };
 
 std::ostream& operator<<(std::ostream&, const pixel&);

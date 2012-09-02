@@ -1,11 +1,12 @@
 #ifndef MATERIAL_CLASS_HPP
 #define MATERIAL_CLASS_HPP
-#include "color.hpp"
+
 #include <string>
+#include "color.hpp"
 
 class material {
     public:
-        //constructors
+        //c'tors
         material();
         material(material const& ma);
         material(std::string const& name,
@@ -26,6 +27,8 @@ class material {
         color kd_;
         color ks_;
         float m_;
-};
+}; 
+
 std::ostream& operator <<(std::ostream& out, material const& mat);
+
 #endif //MATERIAL_CLASS_HPP

@@ -4,27 +4,29 @@
 #include <iostream>
 
 shape::shape()
-    : name_("default"), color_(100, 100, 100) {}
+    : name_("default")
+{}
 
-shape::shape(shape const& s)
-    : name_(s.name_), color_(s.color_) {}
+shape::shape(std::string const& name, material* mat_ptr)
+    :name_(name), 
+    material_ptr_(mat_ptr) 
+{}
 
-shape::shape(std::string const& name, color const& clr)
-    : name_(name), color_(clr) {}
-
-shape::~shape() {
+shape::~shape() 
+{
     //std::cout << "shape Destructor" << std::endl;
 }
 
-std::ostream& operator <<(std::ostream& out, shape const& s) {
-    s.print_on(out);
-    return out;
+std::ostream& 
+operator<<(std::ostream& os, shape const& s) 
+{
+    s.print_on(os);
+    return os;
 }
 
-void shape::print_on(std::ostream& out) const {
-    out << "name: " <<  name_ << " color: "
-        << static_cast<unsigned>(color_[1]) << ","
-        << static_cast<unsigned>(color_[2]) << ","
-        << static_cast<unsigned>(color_[3]) << " ";
+void shape::print_on(std::ostream& os) const 
+{
+    os << "Name: " <<  name_ << std::endl
+        << "Material: " <<  *(material_ptr_) ;
 }
 

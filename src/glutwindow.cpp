@@ -151,3 +151,13 @@ void idle()
 {
   glutPostRedisplay();
 }
+
+void 
+glutwindow::resize(int w, int h)  // SELBER IMPLEMENTIERT!!!!
+{
+    buffer_.resize(w * h);
+    height_ = h;
+    width_ = w;
+
+    reshape(w, h);
+}

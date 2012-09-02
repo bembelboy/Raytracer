@@ -40,6 +40,8 @@ public : // methods
   void update();
   void run();
 
+  void resize(int  w, int h); // SELBER IMPLEMENTIERT!!!!
+
   std::size_t width() const;
   std::size_t height() const;
   float const& buffer() const;

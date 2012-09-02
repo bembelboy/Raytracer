@@ -1,6 +1,6 @@
-#include <glutwindow.hpp>
-#include <ppmwriter.hpp>
-#include <pixel.hpp>
+#include "../include/glutwindow.hpp"
+#include "../include/ppmwriter.hpp"
+#include "../include/pixel.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -8,9 +8,16 @@
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 
-#include <vector.hpp>
-#include <matrix.hpp>
-#include <point.hpp>
+#include "../include/vector.hpp"
+#include "../include/matrix.hpp"
+#include "../include/point.hpp"
+#include "../include/sdf_loader.hpp"
+#include "../include/renderer.hpp"
+#include "../include/scene.hpp"
+#include "../include/shape.hpp"
+#include "../include/box.hpp"
+#include "../include/sphere.hpp"
+
 
 #ifdef __APPLE__
   #include <GLUT/glut.h>
@@ -29,40 +36,50 @@ public :
     // the following code might also be executed in any method
     // just start your raytracing algorithm from here
 
+    sdf_loader file("test.txt");
+    file.load_sdf_file();
+    std::cout << file << std::endl;
+
+    renderer rnd(file.get_scene());
+    rnd.render_scene();
+
+
     // size of a tile in checkerboard
-    const std::size_t checkersize = 20;
+    //const std::size_t checkersize = 20;
 
     // get glutwindow instance
-    glutwindow& window = glutwindow::instance();
+    //glutwindow& window = glutwindow::instance();
 
     // create a ppmwriter
-    ppmwriter image(window.width(), window.height(), "./checkerboard.ppm");
+    //ppmwriter image(window.width(), window.height(), 
+    //       "./checkerboard.ppm");
 
-    // for all pixels of window
-    for (std::size_t y = 0; y < window.height(); ++y) {
-      for (std::size_t x = 0; x < window.width(); ++x) {
-        // create pixel at x,y
-        pixel p(x, y);
 
-        example_math3d();
-
-        // compute color for pixel
-        if ( ((x/checkersize)%2) != ((y/checkersize)%2)) {
-	        p.rgb = color(0.0, 1.0, float(x)/window.height());
-        } else {
-          p.rgb = color(1.0, 0.0, float(y)/window.width());
-        }
-
-        // write pixel to output window
-        window.write(p);
-
-        // write pixel to image writer
-        image.write(p);
-      }
-    }
-
-    // save final image
-    image.save();
+//    // for all pixels of window
+//    for (std::size_t y = 0; y < window.height(); ++y) {
+//      for (std::size_t x = 0; x < window.width(); ++x) {
+//        // create pixel at x,y
+//        pixel p(x, y);
+//
+//        example_math3d();
+//
+//        // compute color for pixel
+//        if ( ((x/checkersize)%2) != ((y/checkersize)%2)) {
+//	        p.rgb = color(0.0, 1.0, float(x)/window.height());
+//        } else {
+//          p.rgb = color(1.0, 0.0, float(y)/window.width());
+//        }
+//
+//        // write pixel to output window
+//        window.write(p);
+//
+//        // write pixel to image writer
+//        image.write(p);
+//      }
+//    }
+//
+//    // save final image
+//    image.save();
   }
 
   // this method shows how to use the supplied classes for matrix, point and vector
@@ -98,24 +115,25 @@ private : // attributes
 
 int main(int argc, char* argv[])
 {
-  // set resolution and checkersize
-  const std::size_t width = 800;
-  const std::size_t height = 600;
+    
+    // set resolution and checkersize
+    const std::size_t width = 800;
+    const std::size_t height = 600;
 
-  // create output window
-  glutwindow::init(width, height, 100, 100, "CheckerBoard", argc, argv);
+    // create output window
+    glutwindow::init(width, height, 100, 100, "CheckerBoard", argc, argv);
 
-  // create a ray tracing application
-  application app;
+    // create a ray tracing application
+    application app;
 
-  // start computation in thread
-  boost::thread thr(boost::bind(&application::start, &app));
+    // start computation in thread
+    boost::thread thr(boost::bind(&application::start, &app));
 
-  // start output on glutwindow
-  glutwindow::instance().run();
+    // start output on glutwindow
+    glutwindow::instance().run();
 
-  // wait on thread
-  thr.join();
+    // wait on thread
+    thr.join();
 
-  return 0;
+    return 0;
 }

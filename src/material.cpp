@@ -45,18 +45,22 @@ std::ostream& operator <<(std::ostream& out, material const& mat) {
 }
 
 void material::print_on(std::ostream& out) const {
-    out << "name: " << name_ << std::endl 
-        << "ka: " 
+    out << name_ << std::endl 
+        << "ka: [" 
         << static_cast<unsigned>(ka_[0]) << ","
-        << static_cast<unsigned>(ka_[2]) << ","
-        << static_cast<unsigned>(ka_[3]) << std::endl
-        << "kd: "
+        << static_cast<unsigned>(ka_[1]) << ","
+        << static_cast<unsigned>(ka_[2]) << "]"
+        << std::endl
+        << "kd: ["
         << static_cast<unsigned>(kd_[0]) << ","
-        << static_cast<unsigned>(kd_[2]) << ","
-        << static_cast<unsigned>(kd_[3]) << std::endl
-        << "ks: "
+        << static_cast<unsigned>(kd_[1]) << ","
+        << static_cast<unsigned>(kd_[2]) << "]"
+        << std::endl
+        << "ks: ["
         << static_cast<unsigned>(ks_[0]) << ","
-        << static_cast<unsigned>(ks_[2]) << ","
-        << static_cast<unsigned>(ks_[3]) << std::endl
+        << static_cast<unsigned>(ks_[1]) << ","
+        << static_cast<unsigned>(ks_[2]) << "]"
+        << std::endl
         << "m: " << m_ << std::endl;
 }
+

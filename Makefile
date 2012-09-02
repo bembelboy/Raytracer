@@ -28,6 +28,8 @@ HEADER =\
 	include/color.hpp \
 	include/vector.hpp \
 	include/point.hpp \
+	include/light.hpp \
+	include/camera.hpp \
 	include/matrix.hpp \
 	include/sdf_loader.hpp \
 	include/shape.hpp \
@@ -35,6 +37,9 @@ HEADER =\
 	include/material.hpp \
 	include/scene.hpp \
 	include/box.hpp \
+	include/hitpoint.hpp \
+	include/ray.hpp \
+	include/renderer.hpp \
         $(NULL)
 
 SOURCE =\
@@ -43,6 +48,8 @@ SOURCE =\
 	src/ppmwriter.cpp \
 	src/color.cpp \
 	src/point.cpp \
+	src/light.cpp \
+	src/camera.cpp \
 	src/vector.cpp \
 	src/matrix.cpp \
 	src/sdf_loader.cpp \
@@ -51,6 +58,9 @@ SOURCE =\
 	src/material.cpp \
 	src/scene.cpp \
 	src/box.cpp \
+	src/hitpoint.cpp \
+	src/ray.cpp \
+	src/renderer.cpp \
 	$(NULL)
 
 PROGRAMSOURCE =\

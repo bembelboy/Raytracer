@@ -1,7 +1,7 @@
 #ifndef SPHERE_CLASS_HPP
 #define SPHERE_CLASS_HPP
+
 #include "shape.hpp"
-#include "../include/point.hpp"
 
 using namespace math3d;
 
@@ -9,9 +9,9 @@ class sphere : public shape {
     public:
         //Constructors and Desructor
         sphere();
-        sphere(math3d::point const& center, double r);
-        sphere(math3d::point const& center, double r,
-                std::string const& name, color const& clr);
+        sphere(point const& center, double r);
+        sphere(std::string const& name, point const& center, double r,
+                 material* mat_ptr);
         sphere(sphere const& sp);
         ~sphere();
 
@@ -20,13 +20,17 @@ class sphere : public shape {
         math3d::point const& get_center() const;
 
         //methods
+        /*virtual*/ bool intersect(ray const& ray, hitpoint& hitP) const;
         /*vitrual*/ double volume() const;
         /*virtual*/ double surface() const;
-        /*virtual*/ bool is_inside(math3d::point const& p) const;
-        /*virtua*/ void print_on(std::ostream& out) const;
+        //*virtual*/ bool is_inside(math3d::point const& p) const;
+        /*virtual*/ void print_on(std::ostream& os) const;
 
     private:
-        math3d::point center_;
+        point center_;
         double radius_;
 };
+
+std::ostream& operator<<(std::ostream& os, sphere const& sph);
+
 #endif //SPHERE_CLASS_HPP
